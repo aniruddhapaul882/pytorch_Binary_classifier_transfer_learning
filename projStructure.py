@@ -11,11 +11,11 @@ directories = [
 # Define the files to create with empty content
 files = {
     "data/dataloaders.py": "",
-    "data/_init__.py": "",
+    "data/__init__.py": "",
     "train.py": "",
     "config.py": "",
     "run.py": "",
-    "_init__.py": "",
+    "__init__.py": "",
     "scripts/inference.py": "",
     "scripts/eval.py": "",
     "scripts/test.py": ""
