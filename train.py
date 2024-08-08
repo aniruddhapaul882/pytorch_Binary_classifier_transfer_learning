@@ -10,7 +10,7 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
-from datetime import datetime
+from datetime import datetime, date
 
 def calculate_sample_weights(dataloader):
     class_counts = np.zeros(len(dataloader.dataset.classes))
@@ -80,7 +80,7 @@ def train_model(model, dataloaders, dataset_sizes, device, num_epochs=cfg.NUM_EP
                 if epoch_loss < best_val_loss:
                     best_val_loss = epoch_loss
                     best_model_wts = model.state_dict()
-                    torch.save(model.state_dict(), os.path.join(cfg.WEIGHT_DIR, f'{datetime.now()}_full_best.pt'))
+                    torch.save(model.state_dict(), os.path.join(cfg.WEIGHT_DIR, f'{date.today()}_full_best.pt'))
                     print(f'Validation loss improved to {epoch_loss:.4f}. Model saved to {cfg.WEIGHT_DIR}')
 
         exp_lr_scheduler.step()
@@ -118,7 +118,7 @@ def main():
     model_ft = train_model(model_ft, dataloaders, dataset_sizes, device, num_epochs=cfg.NUM_EPOCHS)
     
     # Save the model
-    torch.save(model_ft.state_dict(), os.path.join(cfg.WEIGHT_DIR, f'{datetime.now()}_full_last.pt'))
+    torch.save(model_ft.state_dict(), os.path.join(cfg.WEIGHT_DIR, f'{date.today()}_full_last.pt'))
 
     # Plot Confusion Matrix
     model_ft.eval()
