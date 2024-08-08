@@ -2,7 +2,7 @@ import os
 import torch
 from torchvision import transforms
 from PIL import Image
-from data.dataloaders import DataLoaderSetup  # Ensure this imports correctly
+from data.dataloaders import DataLoaderSetup 
 from config import Config as cfg
 from torchvision import models
 import numpy as np
