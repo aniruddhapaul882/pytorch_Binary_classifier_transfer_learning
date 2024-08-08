@@ -25,7 +25,7 @@ def infer_image(image_path, model, device, transform):
         pred = torch.where(outputs > cfg.PRED_THRESH, 1.0, 0.0)
     return pred.item()
 
-def main():
+def main(image_path):
     # Load model
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model_path = os.path.join(cfg.WEIGHT_DIR, 'full_best.pt')
@@ -38,12 +38,15 @@ def main():
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # Preprocessing for ResNet
     ])
     
-    # Sample image path for inference
-    image_path = 'path_to_your_image.jpg'  # Change this to the path of the image you want to classify
+    
     prediction = infer_image(image_path, model, device, transform)
     
-    print(f'Prediction: {prediction}')
+    print(f'Prediction for image {image_path}: {prediction}')
 
 if __name__ == '__main__':
     main()
 
+
+if __name__ == '__main__':
+    image_path = 'path_to_your_image.jpg'  # Replace with the actual image path
+    main(image_path)
