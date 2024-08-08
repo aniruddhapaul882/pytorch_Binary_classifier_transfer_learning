@@ -14,11 +14,10 @@ files = {
     "data/__init__.py": "",
     "train.py": "",
     "config.py": "",
-    "run.py": "",
+    "run_inference.py": "",
     "__init__.py": "",
     "scripts/inference.py": "",
-    "scripts/eval.py": "",
-    "scripts/test.py": ""
+    "scripts/__init__.py": ""
 }
 try:
     # Create directories
