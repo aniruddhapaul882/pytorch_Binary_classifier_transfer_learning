@@ -4,7 +4,7 @@ class Config():
     
     RESIZE_SIZE = int(os.getenv('RESIZE_SIZE', 256))
     BATCH_SIZE = int(os.getenv('BATCH_SIZE', 32))
-    DATA_DIR = str(os.getenv('DATA_DIR',"data/Harness_dataset_split"))
+    DATA_DIR = str(os.getenv('DATA_DIR',"Harness_dataset_split"))
     NUM_WORKERS = int(os.getenv('NUM_WORKERS', os.cpu_count()))
     NUM_EPOCHS = int(os.getenv('NUM_EPOCHS', 2))
     MODEL_PATH = str(os.getenv('MODEL_PATH',"models/"))
