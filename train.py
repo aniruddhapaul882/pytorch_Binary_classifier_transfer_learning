@@ -79,7 +79,7 @@ def train_model(model, dataloaders, dataset_sizes, device, num_epochs=cfg.NUM_EP
                 if epoch_loss < best_val_loss:
                     best_val_loss = epoch_loss
                     best_model_wts = model.state_dict()
-                    torch.save(model.state_dict(), os.path.join(cfg.WEIGHT_DIR, 'best.pt'))
+                    torch.save(model.state_dict(), os.path.join(cfg.WEIGHT_DIR, 'full_best.pt'))
                     print(f'Validation loss improved to {epoch_loss:.4f}. Model saved to {cfg.WEIGHT_DIR}')
 
         exp_lr_scheduler.step()
@@ -105,8 +105,10 @@ def main():
     
     # Define the model (ResNet18 for binary classification)
     model_ft = models.resnet18(weights='IMAGENET1K_V1')
-    for params in model_ft.parameters():
-        params.requires_grad = False
+
+    # for params in model_ft.parameters():
+    #     params.requires_grad = False
+
     num_ftrs = model_ft.fc.in_features
     model_ft.fc = nn.Sequential(nn.Linear(num_ftrs, 1), nn.Sigmoid())
     model_ft = model_ft.to(device)
@@ -115,7 +117,7 @@ def main():
     model_ft = train_model(model_ft, dataloaders, dataset_sizes, device, num_epochs=cfg.NUM_EPOCHS)
     
     # Save the model
-    torch.save(model_ft.state_dict(), os.path.join(cfg.WEIGHT_DIR, 'last.pt'))
+    torch.save(model_ft.state_dict(), os.path.join(cfg.WEIGHT_DIR, 'full_last.pt'))
 
     # Plot Confusion Matrix
     model_ft.eval()
