@@ -43,8 +43,6 @@ def main(image_path):
     
     print(f'Prediction for image {image_path}: {prediction}')
 
-if __name__ == '__main__':
-    main()
 
 
 if __name__ == '__main__':
